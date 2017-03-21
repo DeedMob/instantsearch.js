@@ -4,7 +4,7 @@ import {
   Hits, Menu, Pagination, PoweredBy, StarRating,
   RefinementList, SearchBox, ClearAll,
 } from 'react-instantsearch/dom';
-import {withRouter} from 'react-router';
+import {withRouter, browserHistory} from 'react-router';
 import 'react-instantsearch-theme-algolia/style.css';
 import qs from 'qs';
 import {isEqual} from 'lodash';
@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   onSearchStateChange(nextSearchState) {
+    console.log('changing search state');
     const THRESHOLD = 700;
     const newPush = Date.now();
     this.setState({lastPush: newPush, searchState: nextSearchState});
@@ -46,7 +47,7 @@ class App extends Component {
         onSearchStateChange={this.onSearchStateChange.bind(this)}
         createURL={this.createURL.bind(this)}
       >
-
+        <button onClick={() => browserHistory.push('/test')}></button>
         <div>
           <div style={{
             display: 'flex',
